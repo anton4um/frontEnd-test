@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<button (click)="getDat()">Start</button>
+
+<div *ngIf="!displayResults">
+    <table class="table" >
+        <tr>
+            <th>
+                Вопрос:
+            </th>
+            <th>
+                {{question?.text}}
+            </th>
+        </tr>
+    </table>
+    Variants:
+    <table class="table table-hover">
+        <head>
+            <tr>
+                <th>
+                    Варианты ответов:
+                </th>
+            </tr>
+        </head>
+        <tr *ngFor="let variant of question?.variants" (click)="onSelect(variant)">
+            <th>{{variant?.text}}</th>
+        </tr>
+    </table>
+    <!--<div *ngFor="let variant of question.variants" (click)="onSelect(variant)">{{variant.text}}</div>-->
+
+</div>
+<div *ngIf="displayResults">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Выбранный вариант</th>
+                <th>Комментарий</th>
+                <th>Очки</th>
+            </tr>
+        </thead>
+            <tr *ngFor="let result of selectedVariants">
+
+                    <th>{{result.text}}</th>
+                    <th>{{result.comment}}</th>
+                    <th>{{result.points}}</th>
+
+            </tr>
+            <tr>
+                <th> </th>
+                <th>Сумма:</th>
+                <th>{{points}}</th>
+            </tr>
+    </table>
+    <div> </div>
+
+    <div><button (click)="startAgain()">StartAgain</button></div>
+</div>
+</body>
+</html>
